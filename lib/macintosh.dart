@@ -42,7 +42,7 @@ class _MacintoshState extends State<Macintosh> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: Center(
-              child: Text('Hello',
+              child: Text('hello',
                   style: TextStyle(fontFamily: 'Mali', fontSize: 40)),
             ),
           ),

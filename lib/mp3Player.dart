@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 class Mp3Player extends StatefulWidget {
   @override
@@ -8,6 +9,12 @@ class Mp3Player extends StatefulWidget {
 class _Mp3PlayerState extends State<Mp3Player> {
   int _selectedPage = 0;
   PageController controller = PageController();
+
+  void playSound(int songNumber) {
+    final player = AudioCache();
+    player.play('song$songNumber.wav');
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,15 +45,25 @@ class _Mp3PlayerState extends State<Mp3Player> {
                   controller: controller,
                   children: [
                     Image.network(
-                        'https://upload.wikimedia.org/wikipedia/en/5/51/Michael_Jackson_-_Bad.png'),
+                      'https://upload.wikimedia.org/wikipedia/en/5/51/Michael_Jackson_-_Bad.png',
+                      fit: BoxFit.fill,
+                    ),
                     Image.network(
-                        'https://miro.medium.com/max/1280/1*4PHH6b1KbsWh2nKtcnFiIQ.jpeg'),
+                      'https://miro.medium.com/max/1280/1*4PHH6b1KbsWh2nKtcnFiIQ.jpeg',
+                      fit: BoxFit.fill,
+                    ),
                     Image.network(
-                        'https://upload.wikimedia.org/wikipedia/commons/9/92/ACDC_Back_in_Black.png'),
+                      'https://upload.wikimedia.org/wikipedia/commons/9/92/ACDC_Back_in_Black.png',
+                      fit: BoxFit.fill,
+                    ),
                     Image.network(
-                        'https://upload.wikimedia.org/wikipedia/en/4/43/Queen_II_%28album_cover%29.jpg'),
+                      'https://upload.wikimedia.org/wikipedia/en/4/43/Queen_II_%28album_cover%29.jpg',
+                      fit: BoxFit.fill,
+                    ),
                     Image.network(
-                        'https://upload.wikimedia.org/wikipedia/en/3/36/GreatestHits_Guns%27n%27Roses.jpg')
+                      'https://upload.wikimedia.org/wikipedia/en/3/36/GreatestHits_Guns%27n%27Roses.jpg',
+                      fit: BoxFit.fill,
+                    )
                   ],
                 ),
               ),
@@ -67,10 +84,11 @@ class _Mp3PlayerState extends State<Mp3Player> {
                       child: Stack(
                         children: <Widget>[
                           Container(
-                              alignment: Alignment.topCenter,
-                              margin: EdgeInsets.only(top: 36.0),
-                              child: Icon(Icons.pause,
-                                  color: Color(0xff752D15), size: 40.0)),
+                            alignment: Alignment.topCenter,
+                            margin: EdgeInsets.only(top: 36.0),
+                            child: Icon(Icons.pause,
+                                color: Color(0xff752D15), size: 40.0),
+                          ),
                           Container(
                             alignment: Alignment.centerRight,
                             margin: EdgeInsets.only(right: 36.0),
@@ -82,6 +100,7 @@ class _Mp3PlayerState extends State<Mp3Player> {
                                 controller.animateToPage(++_selectedPage,
                                     duration: Duration(milliseconds: 250),
                                     curve: Curves.ease);
+                                playSound(1);
                               },
                             ),
                           ),
@@ -96,6 +115,7 @@ class _Mp3PlayerState extends State<Mp3Player> {
                                 controller.animateToPage(--_selectedPage,
                                     duration: Duration(milliseconds: 250),
                                     curve: Curves.ease);
+                                playSound(1);
                               },
                             ),
                           ),
@@ -108,20 +128,24 @@ class _Mp3PlayerState extends State<Mp3Player> {
                       ),
                     ),
                     Container(
-                      height: 100.0,
-                      width: 100.0,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(color: Color(0xff752D15), spreadRadius: 8)
-                          ]),
-                      child: Icon(
-                        Icons.play_arrow,
-                        size: 85,
-                        color: Color(0xff752D15),
-                      ),
-                    ),
+                        height: 100.0,
+                        width: 100.0,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color(0xff752D15), spreadRadius: 8)
+                            ]),
+                        child: IconButton(
+                            icon: Icon(
+                              Icons.play_arrow,
+                              size: 85,
+                              color: Color(0xff752D15),
+                            ),
+                            onPressed: () {
+                              playSound(2);
+                            })),
                   ],
                 ),
               ),

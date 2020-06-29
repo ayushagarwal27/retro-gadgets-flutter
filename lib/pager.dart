@@ -57,8 +57,8 @@ class _PagerState extends State<Pager> {
                 height: 50,
                 child: Row(
                   children: [
-                    Icon(Icons.remove, size: 45, color: Color(0xff99A33C)),
-                    Icon(Icons.remove, size: 45, color: Color(0xffBF2E2E)),
+                    Icon(Icons.remove, size: 47, color: Color(0xff99A33C)),
+                    Icon(Icons.remove, size: 47, color: Color(0xffBF2E2E)),
                   ],
                 ),
               ),
